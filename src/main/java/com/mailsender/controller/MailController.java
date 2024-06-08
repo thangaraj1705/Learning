@@ -2,6 +2,7 @@ package com.mailsender.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,6 +30,18 @@ public class MailController {
 		catch(Exception e) {
 			return ResponseEntity.status(500).body("Error send Mail "+e.getMessage());
 		}
+	}
+		@GetMapping(path="/report")
+		public ResponseEntity<String> monitoring (){
+
+			try {
+			mailService.prodReport();
+
+			return ResponseEntity.ok("Mail Send Successfully");
+			}
+			catch(Exception e) {
+				return ResponseEntity.status(500).body("Error send Mail "+e.getMessage());
+			}
 
 	}
 
